@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style type="text/css">
+
+    .node {
+        cursor: pointer;
+    }
+
+    .overlay{
+        background-color:#EEE;
+    }
+
+    .node circle {
+        fill: #fff;
+        stroke: steelblue;
+        stroke-width: 1.5px;
+    }
+
+    .node text {
+        font-size:10px;
+        font-family:sans-serif;
+    }
+
+    .link {
+        fill: none;
+        stroke: #ccc;
+        stroke-width: 1.5px;
+    }
+
+    .templink {
+        fill: none;
+        stroke: red;
+        stroke-width: 3px;
+    }
+
+    .ghostCircle.show{
+        display:block;
+    }
+
+    .ghostCircle, .activeDrag .ghostCircle{
+        display: none;
+    }
+
+    #div-left{
+        display:table-cell;
+        background: white;
+        width:900px;
+        height:900px;
+        position: absolute;
+        top:40px;
+        left:10px;
+    }
+    #div-right{
+        background: white;
+        width:500px;
+        height:900px;
+        position: absolute;
+        border-left:1px solid #000;
+        top:40px;
+        left:900px;
+    }
+
+</style>
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="api.js"></script>
+<script src="newPageJS.js"></script>
+<script src="tree-left.js"></script>
+<script src="tree-right.js"></script>
+<script>
+    init();
+    function init() {
+        $("#div-left").load("left.html");
+        $("#div-right").load("right.html");
+    }
+    //getAllTrees();
+</script>
+
+<body>
+<div id="div-left" style="top: 0px;">
+</div>
+<div id="div-right" style="top: 0px;"></div>
+</body>
+</html>

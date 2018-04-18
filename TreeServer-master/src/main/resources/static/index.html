@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<script type="text/css">
+
+    .labeltext {
+        font-size: 16% ;
+        font-family: SimSun;
+        fill:#000000;
+    }
+
+    .nodetext {
+        font-size: 12% ;
+        font-family: SimSun;
+        fill:#000000;
+    }
+
+    .linetext {
+        font-size: 12% ;
+        font-family: SimSun;
+        fill:#0000FF;
+        fill-opacity:0.0;
+    }
+</script>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta charset="UTF-8">
+
+    <title>Agriculture</title>
+    <script src="jquery-3.2.1.min.js"></script>
+    <script src="api.js"></script>
+    <script src="mainJS.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+    <script>
+        function skip() {
+            window.location.href="./addTree.html";
+        }
+        function replaceDivWithNew() {
+            $("#mainDiv").load("newMainDiv.html");
+        }
+
+        function replaceDivWithHis() {
+            $("#mainDiv").load("historyRecordDisplay.html");
+        }
+        function returnValue() {
+            var lbl=document.getElementById("hide");
+            console.log(lbl.textContent);
+        }
+
+    </script>
+</head>
+<!--当body加载的时候，即调用startGet()方法获取infoTable信息-->
+<body onload="startGet()">
+<div style="background: #F0F0F0;height:50%;left:0%;top: 0%;">
+    <div style="width: 100%;top: 1%;position: absolute;font-size: 1.25em">请选择需要对比的表格数据：</div>
+    <div style="left: 50%;top: 1%;position: absolute;font-size: 1.25em" id="divs">插入表数据：</div>
+    <label id="hide" style="left: 650px;top: 15px;position: absolute;font-size: 1.25em;visibility: hidden"></label>
+    <input type="button" value="click" style="left: 750px;top: 15px;position: absolute;font-size: 1.25em; visibility: hidden" onclick="returnValue()"/>
+    <br><br>
+
+    Table1:
+    <select style="width:8%;height: 10%;font-size: 1em;top: 20%;" id="tab1">
+    </select>
+    Table2:
+    <select style="width:8%;height: 10%;font-size: 1em;top: 20%;" id="tab2">
+    </select>
+    <input type="button" value="读历史对比数据" style="margin-left:3%;width:8%;height: 20%;" onclick="selectHistoryPage()"/>
+    <input type="button" value="重新生成对比数据" style="margin-left:3%;width:10%;height: 20%;" onclick="onSelectOver()"/>
+    <input type="button" value="插入数据" style="margin-left:3%;width:8%;height: 20%;" id="open" onclick="skip()"/>
+</div>
+<div style="left: 10px;top: 110px;width: 200px;height: 840px; background: #bdc3c7;position: absolute">
+    <h3>选中元素信息：</h3>
+    <label id="lb1" style="width: 200px;">
+        <label id="tabName" style="visibility:hidden;">元素名称:</label><br>
+        <label id="nameContent" style="visibility: hidden;width: 200px;"></label>
+        <label id="tabDes" style="visibility: hidden">元素信息:</label><br>
+        <label id="desContent" style="visibility: hidden;width: 200px; word-break: break-all;"></label>
+    </label><br>
+
+    <input type="button" id="btn1" value="所有表信息" style="top:300px;
+    position: absolute;width: 100px;height:30px; font-size: 15px;" onclick="refreshDiv()"/>
+
+
+</div>
+<br>
+
+<div id="mainDiv" style="left: 200px;top: 30px; position: relative;"></div>
+
+</body>
+</html>

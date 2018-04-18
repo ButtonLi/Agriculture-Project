@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<style type="text/css">
+    td{
+        border: 1px solid black;
+        width: 25%;
+        height:20%;
+    }
+    #div-left{
+        left:20%;
+        height: 70%;
+        width: 60%;
+        background: white;
+    }
+    #div-right{
+        left: 55%;
+        top: 0%;
+        position: absolute;
+        width: 28%;
+        height: 100%;
+        background: #F0F0F0;
+    }
+    #tab{
+        border-collapse: collapse;
+    }
+</style>
+<script src="api.js"></script>
+<script src="newPageJS.js"></script>
+<script type="text/javascript">
+    getAllTrees();
+
+</script>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+</head>
+
+<body>
+<div id="div-left"></div>
+<div id="div-right">
+    <br>
+    <label>两张表的对比：</label>
+    <label id="lbl" style="color: red;visibility: hidden">两张表字段间不存在关系</label><br>
+    <input type="text" id="txt" style="visibility: hidden" placeholder="请为该关系命名"/>
+    <input type="button" id="btnSave" value="保存关系" style="visibility: hidden" onclick="saveRelation()"><br><br>
+    <table id="tab" style="border: 1px solid black; visibility: visible">
+        <tr id="row">
+            <!--<td style="border-color: black">-->
+                <!--<canvas id="myCanvas" width="100px" height="70px" style="border:1px solid #F0F0F0;">-->
+                    <!--您的浏览器不支持 HTML5 canvas 标签。-->
+                <!--</canvas>-->
+            <!--</td>-->
+            <td>SourceName</td>
+            <td>TargetName</td>
+            <td>Relation</td>
+        </tr>
+    </table>
+    <input type="button" value="保存修改" id="btn" style="visibility: hidden" onclick="saveRelation()">
+</div>
+</body>
+</html>

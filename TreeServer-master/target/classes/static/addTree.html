@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>插入树</title>
+</head>
+
+<body>
+<script src="jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="api.js" type="text/javascript"></script>
+<textarea rows="25" cols="50" id="txtArea" placeholder="请添加json格式的数据"></textarea>
+<input type="file" name="file" id="files" style="display: none" onchange="readFunc()"/>
+<input type="button" value="读取文件" id="open"/>
+<label id="lbl" style="visibility: hidden">请输入json格式的数据或者读取json格式文件</label><br/><br/>
+<label>ID:</label>
+<input type="text" id="txt"/>
+<label id="idmsg">请输入id</label><br/><br/>
+<input type="button" value="提交"  onclick="submitFunc()"/>
+<script>
+    if (window.File && window.FileReader && window.FileList && window.Blob) {
+        document.getElementById('open').addEventListener('click',function() {
+            document.getElementById('files').click();
+        }, false);
+    } else {
+        alert('The File APIs are not fully supported in this browser.');
+    }
+    function submitFunc() {
+        var area=document.getElementById("txtArea");
+        var id=document.getElementById("txt");
+        var msg=document.getElementById("lbl");
+        var idmsg=document.getElementById("idmsg");
+        if(area.value=="" || area.value=="请添加json格式的数据"){
+            msg.style.visibility="visible";
+            msg.style.color="red";
+            return;
+        }
+        else{
+            msg.style.visibility="hidden";
+        }
+//        if(id.value==""){
+//            idmsg.style.color="red";
+//            return;
+//        }
+//        else {
+//            idmsg.style.color="black";
+////            idmsg.style.visibility="hidden";
+//        }
+//        if(id.value!="0" && id.value!="1" && id.value!="2" && id.value!="3"){
+//            idmsg.style.color="red";
+//            id.value="";
+//            return;
+//        }
+//        else{
+//            idmsg.style.visibility="hidden";
+//        }
+        saveTreeFromWeb(area.value,id.value);
+//        skip();
+    }
+
+    function skip() {
+
+        window.location.href="index.html";
+    }
+    //第一次点击，清空textArea数据
+    var i=1;
+    function clearFunc() {
+        if(i==1){
+            document.getElementById("txtArea").value="";
+            i++;
+        }
+    }
+    function readFunc() {
+        var selectedFile = document.getElementById("files").files[0];//获取读取的File对象
+        var name = selectedFile.name;//读取选中文件的文件名
+        var size = selectedFile.size;//读取选中文件的大小
+        console.log("文件名:"+name+"大小："+size);
+
+        var reader = new FileReader();//这里是核心！读取操作就是由它完成的。
+        reader.readAsText(selectedFile,"utf-8");//读取文件的内容
+
+        reader.onload = function(){
+//            console.log(this.result);//当读取完成之后会回调这个函数，然后此时文件的内容存储到了result中。直接操作即可。
+            document.getElementById("txtArea").value=this.result;
+        };
+    }
+</script>
+</body>
+</html>
